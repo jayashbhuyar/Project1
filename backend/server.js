@@ -1,15 +1,17 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const axios = require('axios');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
+console.log('Attempting to connect to MongoDB...');
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB successfully'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Create a schema for the cryptocurrency data
 const cryptoSchema = new mongoose.Schema({
@@ -22,16 +24,18 @@ const cryptoSchema = new mongoose.Schema({
 });
 
 const Crypto = mongoose.model('Crypto', cryptoSchema);
-app.use(express.static(path.join(__dirname, 'public')));
-// Fetch data from API and store in MongoDB
 
+// Fetch data from API and store in MongoDB
 async function fetchAndStoreData() {
   try {
+    console.log('Fetching data from WazirX API...');
     const response = await axios.get('https://api.wazirx.com/api/v2/tickers');
     const tickers = Object.values(response.data).slice(0, 10);
 
-    await Crypto.deleteMany({}); // Clear existing data
+    console.log('Clearing existing data...');
+    await Crypto.deleteMany({});
 
+    console.log('Storing new data...');
     for (const ticker of tickers) {
       const crypto = new Crypto({
         name: ticker.name,
@@ -60,15 +64,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API route to get stored data
 app.get('/api/tickers', async (req, res) => {
   try {
+    console.log('Fetching tickers from database...');
     const tickers = await Crypto.find({});
+    console.log(`Found ${tickers.length} tickers`);
     res.json(tickers);
   } catch (error) {
+    console.error('Error fetching tickers:', error);
     res.status(500).json({ error: 'Error fetching data' });
   }
 });
 
-// Serve the HTML file
-app.get('/', (req, res) => {
+// Catch-all route to serve the HTML file
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
