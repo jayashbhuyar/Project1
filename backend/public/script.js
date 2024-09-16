@@ -1,15 +1,11 @@
 async function fetchData() {
     try {
         const response = await fetch('/api/tickers');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
         const data = await response.json();
         updateTable(data);
         updateMainPrice(data);
     } catch (error) {
         console.error('Error fetching data:', error);
-        document.getElementById('crypto-data').innerHTML = '<tr><td colspan="6">Error fetching data. Please try again later.</td></tr>';
     }
 }
 
@@ -56,6 +52,11 @@ function updateTimer() {
     }, 1000);
 }
 
+fetchData();
+updateTimer();
+
+// Add this at the end of your existing script.js file
+
 function initThemeToggle() {
     const themeSwitch = document.getElementById('theme-switch');
     const body = document.body;
@@ -76,12 +77,5 @@ function initThemeToggle() {
     });
 }
 
-// Initialize the app
-function init() {
-    fetchData();
-    updateTimer();
-    initThemeToggle();
-}
-
-// Call init when the page loads
-document.addEventListener('DOMContentLoaded', init);
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', initThemeToggle);
