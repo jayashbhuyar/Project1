@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HODLINFO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HODLINFO</div>
+        <div class="header-center">
+            <select id="currency-select">
+                <option value="INR">INR</option>
+            </select>
+            <select id="crypto-select">
+                <option value="BTC">BTC</option>
+            </select>
+            <button class="buy-btn">BUY BTC</button>
+        </div>
+        <div class="header-right">
+            <div class="timer">
+                <span id="timer">60</span>
+            </div>
+            <button class="telegram-btn">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram Logo" class="telegram-logo">
+                Connect Telegram
+            </button>
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-switch" class="theme-switch__input" />
+                <label for="theme-switch" class="theme-switch__label"></label>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>Best Price to Trade</h2>
+        <div class="price-stats">
+            <div class="stat">
+                <span class="percent">0.47 %</span>
+                <span class="time">5 Mins</span>
+            </div>
+            <div class="stat">
+                <span class="percent">1.06 %</span>
+                <span class="time">1 Hour</span>
+            </div>
+            <div id="average-price" class="main-price"></div>
+            <div class="stat">
+                <span class="percent">2.52 %</span>
+                <span class="time">1 Day</span>
+            </div>
+            <div class="stat">
+                <span class="percent">7.51 %</span>
+                <span class="time">7 Days</span>
+            </div>
+        </div>
+        <p class="price-info">Average BTC/INR net price including commission</p>
+        <table id="crypto-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Platform</th>
+                    <th>Last Traded Price</th>
+                    <th>Buy / Sell Price</th>
+                    <th>Difference</th>
+                    <th>Savings</th>
+                </tr>
+            </thead>
+            <tbody id="crypto-data"></tbody>
+        </table>
+        <div class="add-to-home">Add hodlinfo to home screen</div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+:root {
+    --bg-color: #191d28;
+    --text-color: #ffffff;
+    --table-bg: #2e3241;
+    --highlight-color: #3dc6c1;
+}
+
+body {
+    font-family: 'Poppins', 'Roboto', 'Inter', 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme toggle styles */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    background: none; /* Ensure no background */
+}
+
+.theme-switch__input {
+    display: none; /* Hide the input completely */
+}
+
+.theme-switch__label {
+    background-color: #2e3241;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.theme-switch__label::before,
+.theme-switch__label::after {
+    content: '';
+    position: absolute;
+}
+
+.theme-switch__label::after {
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: #3dc6c1;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+.theme-switch__input:checked + .theme-switch__label {
+    background-color: #3dc6c1;
+}
+
+.theme-switch__input:checked + .theme-switch__label::after {
+    transform: translateX(25px);
+    background-color: #ffffff;
+}
+
+/* Remove focus outline */
+.theme-switch__input:focus + .theme-switch__label {
+    box-shadow: 0 0 1px #3dc6c1;
+}
+
+/* Light theme */
+body.light-theme {
+    --bg-color: #ffffff;
+    --text-color: #191d28;
+    --table-bg: #f1f1f1;
+}
+
+/* Update other elements for light theme */
+body.light-theme header,
+body.light-theme main {
+    background-color: var(--bg-color);
+}
+
+body.light-theme th,
+body.light-theme tr:nth-child(even) {
+    background-color: var(--table-bg);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--bg-color);
+}
+
+.logo {
+    font-family: 'Poppins', 'Roboto', 'Inter', 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #3dc6c1;
+}
+
+.header-center {
+    display: flex;
+    align-items: center;
+}
+
+.header-center > * {
+    margin: 0 5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right > * {
+    margin-left: 10px;
+}
+
+select, .buy-btn {
+    padding: 8px 12px;
+    background-color: #2e3241;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23ffffff' d='M0 0l4 4 4-4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+.buy-btn {
+    background-color: #2e3241;
+    color: #ffffff;
+}
+
+select:hover, .buy-btn:hover {
+    background-color: #373d4f;
+}
+
+/* Ensure consistent styling for all buttons */
+button {
+    font-size: 16px;
+    transition: background-color 0.3s;
+    font-family: 'Poppins', 'Roboto', 'Inter', 'Montserrat', sans-serif;
+}
+
+/* Keep the Telegram button distinct */
+.telegram-btn {
+    background-color: #3dc6c1;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.telegram-btn:hover {
+    background-color: #35a8a3;
+}
+
+/* Adjust the header center layout if needed */
+.header-center {
+    display: flex;
+    align-items: center;
+}
+
+.header-center > * {
+    margin: 0 5px;
+}
+
+.timer {
+    width: 40px;
+    height: 40px;
+    background-color: #000000; /* Changed to black */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#3dc6c1; /* Keeping the text color white for contrast */
+    font-weight: bold;
+    font-size: 16px; /* Adjust this value if needed for better fit */
+}
+
+/* If you want to add a subtle border for better visibility against dark backgrounds */
+.timer {
+    border: 1px solid #333333;
+}
+
+/* If you want to add a hover effect */
+.timer:hover {
+    background-color: #1a1a1a; /* Slightly lighter black on hover */
+}
+
+.telegram-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+    background-color: #3dc6c1;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: #888888;
+}
+
+.price-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.percent {
+    font-size: 24px;
+    color: #3dc6c1;
+}
+
+.time {
+    font-size: 14px;
+    color: #888888;
+}
+
+.main-price {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.price-info {
+    color: #888888;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #2e3241;
+}
+
+th {
+    background-color: #2e3241;
+    color: #888888;
+}
+
+tr:nth-child(even) {
+    background-color: #2e3241;
+}
+
+.add-to-home {
+    margin-top: 20px;
+    color: #3dc6c1;
+    cursor: pointer;
+}
+
+/* Remove any potential pseudo-elements */
+.theme-toggle::before,
+.theme-toggle::after {
+    display: none;
+}
