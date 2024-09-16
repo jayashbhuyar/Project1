@@ -74,8 +74,8 @@ app.get('/api/tickers', async (req, res) => {
   }
 });
 
-// Serve the HTML file
-app.get('/', (req, res) => {
+// Catch-all route to serve the HTML file
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
